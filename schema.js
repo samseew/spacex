@@ -1,4 +1,6 @@
 //all the graphql stuff here
+const axios = require('axios')
+const fetch = require("node-fetch");
 
 //so every set of data you wanna grab is essentially an object type 
 const {
@@ -59,7 +61,8 @@ const RootQuery = new GraphQLObjectType({
         launches: {
             type: new GraphQLList(LaunchType),
             resolve(parent, args) {
-                return fetch('https://api.spacexdata.com/v3/launches').then(res => res.data)
+                // return axios.get('https://api.spacexdata.com/v3/launches').then(res => res.data)
+                return fetch('https://api.spacexdata.com/v3/launches').then(res => res.json())
             }
         }
     }
